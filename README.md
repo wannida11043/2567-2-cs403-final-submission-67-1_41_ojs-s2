@@ -15,12 +15,12 @@
    
 Manual / Instructions for your projects starts here !
 # Topic 1 ติดตั้งโปรแกรม
-XAMPP : https://www.apachefriends.org/
-Composer : https://getcomposer.org/
-Nodejs : https://nodejs.org/en
-Visual Studio Code : https://code.visualstudio.com/
-MariaDB : https://mariadb.org/
-HeidiSQL : https://www.heidisql.com/
+1. XAMPP : https://www.apachefriends.org/
+2. Composer : https://getcomposer.org/
+3. Nodejs : https://nodejs.org/en
+4. Visual Studio Code : https://code.visualstudio.com/
+5. MariaDB : https://mariadb.org/
+6. HeidiSQL : https://www.heidisql.com/
 
 # Topic 2 ตั้งรหัสผ่านของ MariaDB 
 ตั้งค่ารหัสผ่านของฐานข้อมูล MariaDB คือ 88888 (8 จำนวน 5 ตัว)
