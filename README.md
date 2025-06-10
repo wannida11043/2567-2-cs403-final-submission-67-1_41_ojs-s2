@@ -13,7 +13,7 @@
 1. นางสาววรรณิดา พันธุ์รักษ์  6209650024  wannida.pha@dome.tu.ac.th
 2. นางสาวอวัสดา อ๊อกซู  6209650495  awasada.oxz@dome.tu.ac.th
    
-Manual / Instructions for your projects starts here !
+
 # Topic 1 ติดตั้งโปรแกรม
 1. XAMPP : https://www.apachefriends.org/
 2. Composer : https://getcomposer.org/
