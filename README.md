@@ -25,14 +25,14 @@ Manual / Instructions for your projects starts here !
 # Topic 2 ตั้งค่าโปรแกรมที่ Download
 1. XAMPP : กดคลิก config ของ Apache จากนั้นทำการค้นหา Extention=zip แล้วทำการลบ ; หน้าคำว่า Extention=zip ออก แล้วกำบันทึกไฟล์
 2. Dowload Extention ใน VScode ดังนี้
-   * 1. _Laravel Extention Pack_
-   * 2. _Composer_
-   * 3. _HTML CSS Support_
-   * 4. _Prettier_
+   *  _Laravel Extention Pack_
+   *  _Composer_
+   *  _HTML CSS Support_
+   *  _Prettier_
 3. ตั้งค่ารหัสผ่านของฐานข้อมูล MariaDB คือ 88888 _(8 จำนวน 5 ตัว)_
 4. นำรฟัสผ่านที่ทำการตั้งค่าจาก MariaDB มาเข้าสู่ฐานข้อมูล
-   * 1. _คลิกขวาเพื่อสร้างฐานข้อมูลใหม่ โดยเลือก Creat new > Database_
-   * 2. _ตั้งชื่อฐานข้อมูลว่า *eins* และเลือก callection เป็น *utf8mb3_general_ci* แล้วกดบันทึก_
+   *  _คลิกขวาเพื่อสร้างฐานข้อมูลใหม่ โดยเลือก Creat new > Database_
+   *  _ตั้งชื่อฐานข้อมูลว่า *eins* และเลือก callection เป็น *utf8mb3_general_ci* แล้วกดบันทึก_
 
 # Topic 3 เชื่อมต่อฐานข้อมูลกับ Server
 1. เปิดไฟล์ code ผ่าน VScode ขึ้นมา
