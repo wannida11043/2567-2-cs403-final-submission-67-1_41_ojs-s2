@@ -1,0 +1,8 @@
+ระบบบริหารจัดการการต่อ พ.ร.บ. และภาษีรถ
+AN INSURANCE AND TAX CAR MANAGEMENT SYSTEM
+
+ABSTRACT
+Nowadays, people use cars more, whether they are cars or motorcycles. Having your own car requires you to pay taxes every year according to the law, called car registration or tax renewal. Before renewing the tax, you must renew the compulsory car insurance issued by a private company. This makes the agency have to organize the documents to prevent the documents from being lost. From the problems, web application developers have invented a car insurance and tax management system to solve document storage problems. 
+In addition, the system helps manage car insurance and tax for web application users. Users can add, edit, and search for car plates that have been successfully added. In addition, the system can set up service fees to calculate service fees, display all vehicles that have been added to the system, display a group of vehicles that will expire within 90 days, display a group of vehicles that will expire within 30 days, display a group of vehicles that have already expired, display a group of vehicles that are currently in the process of renewing compulsory insurance and tax, show the history of renewals, add proof of document receipt, and summarize data in graphs.
+
+Keywords: web applications, car insurance and tax system, cars
