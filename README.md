@@ -32,17 +32,17 @@ Manual / Instructions for your projects starts here !
 3. ตั้งค่ารหัสผ่านของฐานข้อมูล MariaDB คือ 88888 _(8 จำนวน 5 ตัว)_
 4. นำรฟัสผ่านที่ทำการตั้งค่าจาก MariaDB มาเข้าสู่ฐานข้อมูล
    * 1. _คลิกขวาเพื่อสร้างฐานข้อมูลใหม่ โดยเลือก Creat new > Database_
-     2. _ตั้งชื่อฐานข้อมูลว่า *eins* และเลือก callection เป็น *utf8mb3_general_ci* แล้วกดบันทึก_
+   * 2. _ตั้งชื่อฐานข้อมูลว่า *eins* และเลือก callection เป็น *utf8mb3_general_ci* แล้วกดบันทึก_
 
 # Topic 3 เชื่อมต่อฐานข้อมูลกับ Server
 1. เปิดไฟล์ code ผ่าน VScode ขึ้นมา
 2. ตรวจสอบไฟล์ .env โดยที่บรรทัด 22-27 จะต้องเป็นดังนี้
-    *DB_CONNECTION=mysql
-    *DB_HOST=127.0.0.1
-    *DB_PORT=3306                                                                                                         
-    *DB_DATABASE=eins
-    *DB_USERNAME=root
-    *DB_PASSWORD=88888
+    * DB_CONNECTION=mysql
+    * DB_HOST=127.0.0.1
+    * DB_PORT=3306                                                                                                         
+    * DB_DATABASE=eins
+    * DB_USERNAME=root
+    * DB_PASSWORD=88888
 4. ตั้งค่า Terminal ให้เป็น cmd 
 5. ป้อนคำสั่ง *php artisan migrate* ใน Terminal
 6. เมื่อเชื่อมสำเร็จแล้ว ให้ป้อนคำสั่ง *php artisan migrate:refersh --seed* ใน Terminal
