@@ -50,4 +50,4 @@
 
 # Topic 4 การเปิดใช้งานระบบ
 1. ป้อนคำสั่ง *php artisan serve* ใน Terminal
-2. เปิด like http://127.0.0.1:8000 หรือกด ctrl+click ในหน้าต่าง Terminal
+2. เปิด link http://127.0.0.1:8000 หรือกด ctrl+click ในหน้าต่าง Terminal
