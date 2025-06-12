@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 class AdminController extends Controller
 {
 
-    
+
 
 //อัปเดตข้อมูลวันที่ในหน้าประวัติการต่อ
 public function updateDateRenew(Request $request)
@@ -75,7 +75,7 @@ public function storeHistory(Request $request)
 {
     $type_ins = null;
     $type_tax = null;
-    
+
     if ($request->input('calculateRenew') == 1) {
         $type_ins = 1;
     } else if ($request->input('calculateRenew') == 0) {
@@ -113,12 +113,12 @@ public function storeHistory(Request $request)
         'Receive' => $receive_option, // บันทึกการรับเอกสาร
         'ProofOfReceive' => null, // ยังไม่มีหลักฐานการรับ
         'SumRenew' => $request->sum_renew,
-        'SumTax' => $request->sum_tax, 
+        'SumTax' => $request->sum_tax,
         'InsIncome' => $request->ins_income,
         'TaxIncome' => $request->tax_income,
         'SumDelivery' => $request->sum_delivery,
         'SumCost' => $request->total_cost,
-        
+
     ];
 
     DB::table('histories')->insert($dataData);
@@ -142,7 +142,7 @@ public function storeHistoryReceive(Request $request, $id)
         ->select('c.CarNumber','cs.CustomerName','cs.PhoneNumber','c.SelectOption','htr.ProofOfReceive','htr.status','htr.Receive','htr.id as history_id','htr.TypeRenewIns','htr.TypeRenewTax','c.id as car_id','htr.DateRenew','c.BookOwner')
         ->where('htr.id', $id)
         ->first();
-    
+
     // ตรวจสอบว่าข้อมูลมีอยู่หรือไม่
     if (!$data) {
         return redirect()->back()->withErrors(['error' => 'ไม่พบข้อมูลที่ต้องการ']);
@@ -176,7 +176,7 @@ public function storeHistoryReceive(Request $request, $id)
             'ProofOfReceive' => $fileName
         ]);
     }
-    
+
 
     // รีไดเร็กต์กลับไปยังหน้าและแสดงข้อความสำเร็จ
     return redirect()->route('receiveStore')->with('success', 'ข้อมูลได้รับการบันทึกเรียบร้อยแล้ว');
@@ -215,7 +215,7 @@ public function storeHistoryReceive(Request $request, $id)
 
     public function showIn($id)
 {
-    
+
 
     $List = DB::table('cars as c')
         // ->leftJoin('histories as htr','c.id','=','htr.CarId')
@@ -226,7 +226,7 @@ public function storeHistoryReceive(Request $request, $id)
         ->where('c.id', $id)
         ->first();
 
-        
+
     $registrationDate = Carbon::parse($List->RegistrationDate);
     $carYears = intval($registrationDate->diffInYears(Carbon::now()));
     $months = intval($registrationDate->diffInMonths(Carbon::now()) % 12); // หาจำนวนเดือน
@@ -290,7 +290,7 @@ public function storeHistoryReceive(Request $request, $id)
 
     // ส่งไปยังหน้า view
     return view('infomation', compact('days_left','days_ins', 'days', 'carYears'), ["list" => $List]);
-} 
+}
 
 
 
@@ -326,13 +326,13 @@ public function storeHistoryReceive(Request $request, $id)
 
             foreach ($List as $item) {
                 $carId = $item->id;
-            
+
                 $item->HasRenewIns = isset($historyFlags[$carId]) ? $historyFlags[$carId]->HasRenewIns : 0;
                 $item->HasRenewTax = isset($historyFlags[$carId]) ? $historyFlags[$carId]->HasRenewTax : 0;
             }
 
-            
-    
+
+
             // คำนวณการต่ออายุภาษีและประกัน
             foreach ($List as $index => $item) {
                 $d_warning = 90;
@@ -340,30 +340,30 @@ public function storeHistoryReceive(Request $request, $id)
                 $d_expire = 0;
                 // $ins_warning = 90;
                 // $ins_danger = 30;
-    
-    
+
+
                 $today = date_create(date('Y-m-d')); // วันที่ปัจจุบัน
-    
+
                 // แยกวัน, เดือน, ปี จาก RegistrationDate
                 $regArr = explode("-", $item->RegistrationDate);
                 $regDay = $regArr[2];  // วัน
                 $regMonth = $regArr[1]; // เดือน
                 $regYear = $regArr[0]; // ปี
-        
+
                 // ใช้ TaxHistoryDate เป็นฐานในการคำนวณปี
                 $taxExpireDate = date_create($item->TaxHistoryDate); // วันต่อภาษีครั้งล่าสุด
                 $taxExpireDate->modify('+1 year'); // เพิ่ม 1 ปีจากวันต่อภาษี
-        
+
                 // ใช้ปีจาก TaxHistoryDate แต่ใช้วันเดือนจาก RegistrationDate
                 $taxExpireDate->setDate($taxExpireDate->format('Y'), $regMonth, $regDay); // เปลี่ยนปีจาก TaxHistoryDate และใช้เดือน/วันจาก RegistrationDate
-        
+
                 // เก็บวันที่หมดอายุภาษี
                 $List[$index]->tax_expiry_date = $taxExpireDate->format('d/m/Y'); // วันหมดอายุภาษีในรูปแบบ วัน/เดือน/ปี
-        
+
                 // คำนวณจำนวนวันที่เหลือจนถึงวันหมดอายุภาษี
                 $diff_tax = date_diff($today, $taxExpireDate); // ความต่างระหว่างวันที่ปัจจุบันและวันหมดอายุภาษี
                 $days_left = (int)$diff_tax->format('%a'); // จำนวนวันเหลือจนถึงวันหมดอายุภาษี
-                
+
                 // ตรวจสอบว่า $taxExpireDate อยู่ในอดีตหรือไม่
                 if ($taxExpireDate < $today) {
                     // ถ้า $taxExpireDate เก่ากว่า $today ให้ผลลัพธ์เป็นค่าลบ
@@ -372,15 +372,15 @@ public function storeHistoryReceive(Request $request, $id)
                     // ถ้า $taxExpireDate อยู่ในอนาคตหรือวันนี้
                     $days_left = (int)$diff_tax->format('%a') ;
                 }
-        
+
                 // เก็บจำนวนวันที่เหลือ
                 $List[$index]->tax_days_left = $days_left;
-    
+
                 //calculate days to renew from today
                 // $date_renew =  date_create(date('Y-m-d',strtotime(implode("-",$regArr))));
                 // $due_date_diff = date_diff($today,$date_renew);
                 // $days = (int)$due_date_diff->format('%a')%365;
-    
+
                 // $List[$index]->days = $days;
                 // $List[$index]->cls = ($days<=$d_danger) ? "bg_danger" : (($days>$d_danger&&$days<=$d_warning) ? "bg_warning" : "") ;
                 // $List[$index]->disabled = ($days<=$d_danger) ? "" : "disabled" ;
@@ -401,16 +401,16 @@ public function storeHistoryReceive(Request $request, $id)
                 }
 
                 $List[$index]->ins_days_left = $days_left_ins;
-    
+
                 $register_day = date_create(date('Y-m-d',strtotime($item->RegistrationDate)));
                 // $today = date_create(date('Y-m-d'));
                 $diff_register = date_diff($register_day,$today);
                 $days = (int)$diff_register->format('%a')%365;     // เศษวัน
 
-                
+
                 $total_year = floor((int)$diff_register->format('%a')/365);
 
-                
+
 
                 // $List[$index]->days = $days;
                 // $List[$index]->days_ins = $days_ins;
@@ -424,21 +424,21 @@ public function storeHistoryReceive(Request $request, $id)
                 //     // กรณีที่ไม่ได้อยู่ในเงื่อนไขที่กำหนด
                 //     $List[$index]->tax_class = 'default'; // ตั้งค่าเป็น default หรือค่าสีอื่น ๆ
                 // }
-                
+
             }
-            
-    
+
+
             // session(['total_year' => $total_year]);
-    
+
             // ส่งข้อมูลไปยัง view
             // dd($List);
             return view('info', ["list" => $List]);
-    
+
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
     }
-    
+
 
     function sum()
     {
@@ -589,7 +589,7 @@ public function storeHistoryReceive(Request $request, $id)
             $dataCar["CusId"] = $findCus->id;
             $errorMsg[] = 'พบข้อมูลบัตรประชาชนถูกใช้งานแล้ว';
         }
-        
+
 
 
         // find duplicate the car by plate number.
